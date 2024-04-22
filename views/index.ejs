@@ -1,0 +1,23 @@
+<%- include('./partials/head') %>
+
+<!-- <div class="zoeken">
+
+<li class="search-box">
+    <i class='bx bx-search icon'></i>
+    <input type="text" placeholder="Zoek...">
+</li>
+
+</div> -->
+
+<article class="slider">
+<h2>Boeken </h2>
+<%- include('./partials/items-carrousel', {items: books}) %>
+
+<h2>CD's </h2>
+<%- include('./partials/items-carrousel', {items: cds}) %>
+
+<h2>Activiteiten </h2>
+<%- include('./partials/items-carrousel', {items: activities}) %>
+</article>
+
+<%- include('./partials/foot') %>

@@ -1,0 +1,20 @@
+<%- include('./partials/head') %>
+
+<article class="leeslijst">
+    <h2>Mijn Leeslijst</h2>
+    <ul>
+        <% items.forEach(item => { %>
+            <li>
+                <a href="./detail/<%= item.id %>">
+                    <h3><%= item.title %></h3>
+                    <img src="https://fdnd-agency.directus.app/assets/<%= item.afbeelding%>" alt="">
+                </a>
+                <hr class="line">
+            </li>
+            
+        <% }); %>
+    </ul>
+
+</article>
+
+<%- include('./partials/foot') %>

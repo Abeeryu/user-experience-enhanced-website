@@ -1,0 +1,57 @@
+<%- include('./partials/head') %>
+
+<article class="detail">
+    <% items.forEach(item => { %>
+    <img src="https://fdnd-agency.directus.app/assets/<%= item.afbeelding %>" alt=""/>
+
+    <h2><%= item.title %></h2>
+    
+    <div class="item-info">
+
+          <p><b>type: </b><%= item.type %></p>
+          <p><b>oba link: </b><%= item.oba_link %></p>
+          <p><b>uitgever: </b><%= item.publisher %></p>
+          <p><b>taal: </b><%= item.language %></p>
+          <p><b>kenmerken: </b><%= item.characteristics %></p>
+          <p><b>onderwerp: </b><%= item.subject %></p>
+          <p><b>ISBN: </b><%= item.ISBN %></p>
+          <p><b>pica nummer: </b><%= item.pica_number %></p>
+          <p><b>SISO: </b><%= item.SISO %></p>
+          <p><b>editie: </b><%= item.editie %></p>
+          <p><b>auteur: </b><%= item.auteur %></p>
+          <p><b>vertaler: </b><%= item.vertaler %></p>
+          <p><b>genre: </b><%= item.genre %></p>
+          <p><b>datum: </b><%= item.datetime %></p>
+          <p><b>prijs: €</b><%= item.price %></p>
+          <p><b>locatie: </b><%= item.location %></p>
+
+          <!-- <button onclick="addToLeeslijst('<%= item.id %>')" class="add" id="add-btn">toevoegen aan Leeslijst</button> -->
+
+          <form action="/detail/<%= item.id %>" method="POST">
+            <button class="add">Toevoegen aan leeslijst</button></form>
+    </div>
+
+      </div>
+
+        <!-- <p>
+    <%= item.id %>
+        </p> -->
+    <% }) %>
+</article>
+
+
+<!-- <section  class="form-container">
+
+    <h2 class="form-title">Recensies</h2>
+    <div class="comments" id="comments-section"></div>
+    <form id="comments-form" >
+        <label for="Naam">Naam</label>
+        <input type="text" name="username" placeholder="Naam">
+        <label for="message">Message</label>
+        <textarea name="comment" placeholder="Message"></textarea>
+        <button type="submit">versturen →</button>
+    </form>
+
+</section> -->
+
+<%- include('./partials/foot') %>
