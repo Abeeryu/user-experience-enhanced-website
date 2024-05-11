@@ -87,19 +87,83 @@ app.get('/family', async function(request, response) {
 
 
 app.get('/detail/:id', function(request, response) {
-    fetchJson(apiItem + '?filter={"id":' + request.params.id + '}').then((itemsDataUitDeAPI) => {
+    fetchJson(apiItem + '?filter={"id":' + request.params.id + '}' ).then((itemsDataUitDeAPI) => {
         response.render('detail', {items: itemsDataUitDeAPI.data})
     });
 })
 
 
-
-
 app.get('/leeslijst', function (request, response) {
   fetchJson(apiItem).then((itemsDataUitDeAPI) => {
+    const itemsOnReadingList = itemsDataFromAPI.data.filter(item => leeslijst[item.id]);
 
-  })
-})
+    if (itemsOnReadingList.length) {
+        response.render('leeslijst', { items: itemsOnReadingList });
+    } else {
+        console.error("Invalid or unexpected API response format");
+        response.status(500).send("Internal Server Error");
+    }
+  });
+});
+
+
+app.post('/detail/:id', function (request, response) {
+  // Extract the item ID from the request parameters
+  const itemId = request.params.id;
+
+   leeslijst[itemId] = true;
+
+   fetchJson(apiItem)
+   .then((itemsDataFromAPI) => {
+
+       const itemsOnReadingList = itemsDataFromAPI.data.filter(item => leeslijst[item.id]);
+
+       if (itemsOnReadingList.length) {
+      
+           response.render('leeslijst', { items: itemsOnReadingList });
+       } else {
+           console.error("Invalid or unexpected API response format");
+           response.status(500).send("Internal Server Error");
+       }
+   })
+});
+
+
+
+
+let favorieten = [];
+
+app.get('/favorieten', function(request, response) {
+ 
+    fetchJson('https://fdnd-agency.directus.app/items/oba_item')
+        .then((itemsDataFromAPI) => {
+            // Add items to favorites
+            const data = itemsDataFromAPI.data;
+            const filteredResponse = data.filter(obj => favorieten.includes(obj.id));
+
+            if (filteredResponse.length === 0) {
+                
+                response.render('favorietenEmptyState');
+            } else {
+            
+                response.render('favorieten', { items: filteredResponse });
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching items from API:', error);
+            response.status(500).send('Internal Server Error');
+        });
+});
+
+
+// Endpoint om een item toe te voegen aan de favorieten
+app.post('/add-to-favorieten', (req, res) => {
+  const id = parseInt(req.body["bookId"])
+
+  favorieten.push(id);
+
+  res.status(201).json({ message: 'Item succesvol toegevoegd aan favorieten' });
+});
 
 
 

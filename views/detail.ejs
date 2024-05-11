@@ -1,34 +1,60 @@
 <%- include('./partials/head') %>
 
-<article class="detail">
-    <% items.forEach(item => { %>
-    <img src="https://fdnd-agency.directus.app/assets/<%= item.afbeelding %>" alt=""/>
+<article>
 
-    <h2><%= item.title %></h2>
+<div class="detail">
+    <% items.forEach(item=> { %>
+
+        <h2>
+            <%= item.title %>
+        </h2>
+
+        <img src="https://fdnd-agency.directus.app/assets/<%= item.afbeelding %>" alt=""/>
+
+        <!-- <form action="/detail/<%= item.id %>" method="POST">
+            <input type="hidden" name="savedItem" value="<%= item.id %>">
+
+            <button class="add">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="svg-button" onclick="submitForm('<%= item.id %>')">
+                    <path id="svg-path<%= item.id %>" d="M12 2c-4.42 0-8 3.58-8 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm0 14c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm2-6h-4v-2h4v2z"/>
+                </svg> 
+            </button>
+        </form> -->
+</div>
+
+<form class="leeslijst-btn" action="/detail/<%= item.id %>" method="POST">
+    <button class="add">Toevoegen aan leeslijst</button></form>
+
+<form id="myForm" action="/add-to-favorieten" method="post">
+    <input type="hidden" name="bookId" id="bookId" value="<%= item.id %>">
+    <button type="submit" id="submitButton">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="svg-icon">
+            <path id="svg-path" d="M5 3a2 2 0 0 0-2 2v16l9-4 9 4V5a2 2 0 0 0-2-2H5z"/>
+        </svg>
+    </button>
+</form>
     
     <div class="item-info">
 
-          <p><b>type: </b><%= item.type %></p>
-          <p><b>oba link: </b><%= item.oba_link %></p>
-          <p><b>uitgever: </b><%= item.publisher %></p>
-          <p><b>taal: </b><%= item.language %></p>
-          <p><b>kenmerken: </b><%= item.characteristics %></p>
-          <p><b>onderwerp: </b><%= item.subject %></p>
+          <p><b>Type: </b><%= item.type %></p>
+          <p><b>Oba Link: </b><%= item.oba_link %></p>
+          <p><b>Uitgever: </b><%= item.publisher %></p>
+          <p><b>Taal: </b><%= item.language %></p>
+          <p><b>Kenmerken: </b><%= item.characteristics %></p>
+          <p><b>Onderwerp: </b><%= item.subject %></p>
           <p><b>ISBN: </b><%= item.ISBN %></p>
-          <p><b>pica nummer: </b><%= item.pica_number %></p>
+          <p><b>Pica nummer: </b><%= item.pica_number %></p>
           <p><b>SISO: </b><%= item.SISO %></p>
-          <p><b>editie: </b><%= item.editie %></p>
-          <p><b>auteur: </b><%= item.auteur %></p>
-          <p><b>vertaler: </b><%= item.vertaler %></p>
-          <p><b>genre: </b><%= item.genre %></p>
-          <p><b>datum: </b><%= item.datetime %></p>
-          <p><b>prijs: €</b><%= item.price %></p>
-          <p><b>locatie: </b><%= item.location %></p>
+          <p><b>Editie: </b><%= item.editie %></p>
+          <p><b>Auteur: </b><%= item.auteur %></p>
+          <p><b>Vertaler: </b><%= item.vertaler %></p>
+          <p><b>Genre: </b><%= item.genre %></p>
+          <p><b>Datum: </b><%= item.datetime %></p>
+          <p><b>Prijs: €</b><%= item.price %></p>
+          <p><b>Locatie: </b><%= item.location %></p>
 
           <!-- <button onclick="addToLeeslijst('<%= item.id %>')" class="add" id="add-btn">toevoegen aan Leeslijst</button> -->
 
-          <form action="/detail/<%= item.id %>" method="POST">
-            <button class="add">Toevoegen aan leeslijst</button></form>
     </div>
 
       </div>

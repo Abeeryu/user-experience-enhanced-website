@@ -1,11 +1,12 @@
-
 <section class="carrousel">
+
     <% items.forEach(item => { %>
         <article class="carrousel-details"> 
             <h3>
                 <a href="./detail/<%= item.id %>"> <%=item.title %></a>
             </h3>
-            <img src="https://fdnd-agency.directus.app/assets/<%= item.afbeelding.id %>" alt="" width="<%= item.afbeelding.id %>" height="<%= item.afbeelding.id.height %>">
+            <img src="https://fdnd-agency.directus.app/assets/<%= item.afbeelding.id %>" alt="" width="<%= item.afbeelding.width %>" height="<%= item.afbeelding.height %>" loading="lazy">
+            
 
             <!-- <p>
                 <%= item.id %>
