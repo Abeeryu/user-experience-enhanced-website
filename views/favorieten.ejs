@@ -7,8 +7,16 @@
             <li>
                 <a href="./detail/<%= item.id %>">
                     <h3><%= item.title %></h3>
-                    <img src="https://fdnd-agency.directus.app/assets/<%= item.afbeelding%>" alt="">
+                    <!-- <img src="https://fdnd-agency.directus.app/assets/<%= item.afbeelding%>" alt=""> -->
+                    <picture>
+                        <source srcset="https://fdnd-agency.directus.app/assets/<%= item.afbeelding %>?avif" type="image/avif">
+                        <source srcset="https://fdnd-agency.directus.app/assets/<%= item.afbeelding %>?webp" type="image/webp">
+                        <img src="https://fdnd-agency.directus.app/assets/<%= item.afbeelding %>" alt="" height="<%= item.afbeelding.height %>" width="<%= item.afbeelding.width %>">
+                    </picture>
                 </a>
+
+                <form class="weghalen-favorieten-btn" action="/detail/<%= item.id %>" method="POST">
+                    <button class="add">Weghalen</button></form>
 
                 <hr class="line">
             </li>

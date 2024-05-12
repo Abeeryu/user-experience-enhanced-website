@@ -91,6 +91,13 @@
     background-color: #eaeaea;
 }
 
+@supports (scroll-snap-type: x mandatory) {
+    .carrousel {
+        overflow: auto;
+        scroll-snap-type: x mandatory;
+    }
+}
+
 .carrousel-details {
     padding-top: 20px;
     padding-bottom: 20px;
@@ -111,6 +118,12 @@
     height: 400px;
     object-fit: cover;
     object-position: top center;
+}
+
+@supports (object-fit: cover) {
+    .carrousel img {
+        object-fit: cover;
+    }
 }
 
 .carrousel a {
